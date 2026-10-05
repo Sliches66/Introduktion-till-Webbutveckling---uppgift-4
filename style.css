@@ -1,4 +1,141 @@
+body {
+  background: linear-gradient(
+    to bottom,
+    #ffd9e1,
+    #ffc0cb
+  ); /* Ljusrosa bakgrundsfärg med gradient */
+  min-height: 100vh; /* body ska vara minst 100% av Webbläsarfönstrets höjd */
+  display: flex; /* Använder flexbox för att centrera content */
+  justify-content: center; /* Centrerar horisontellt */
+  align-items: center; /* Centrerar vertikalt */
+
+  font-family: Arial, sans-serif; /* Använder Arial som standard font */
+}
+/* Style förtodo container */
+.todo-container {
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px; /* Rundar hörnen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Lägger till en skugga för att ge djup */
+
+  animation: pageStart 1.2s ease-out; /* Lägger till en animation när sidan laddas */
+}
+/* Style för rubriken */
+.todo-container h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0;
+}
+/* Style för input fältet */
+#taskInput {
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 16px;
+  flex: 1; /* Gör att inputfältet tar upp all tillgänglig plats i flexboxen */
+}
+/* Style för Knappen */
+#addButton {
+  padding: 10px 15px;
+  border: none; /* Tar bort standardkanten runt knappen */
+  border-radius: 5px;
+  cursor: pointer; /* Ändrar muspekaren till en hand */
+  font-size: 16px;
+
+  background-color: #ff69b4; /*hex färg för rosa */
+  color: white;
+}
+/* Style för listan */
+.input-container {
+  display: flex;
+  gap: 10px;
+}
+/*style för todo container */
+.todo-container p {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+/* Tar bort standardpunkterna från listan */
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+/* Styleing för varje uppgift i listan */
+#taskList li {
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition:
+    background-color 0.5s,
+    color 0.5s; /* Lägger till en transition för bakgrundsfärg och textfärg */
+  animation: addTask 0.5s ease; /* Lägger till en animation när en uppgift läggs till */
+}
+/* Style för knappen i varje uppgift */
+#taskList li button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+/* Style för avslutade uppgifter */
 .completed {
-  text-decoration: line-trough;
   color: gray;
+  background-color: #d3d3d3; /* Ljusgrå bakgrundsfärg för avslutade uppgifter */
+}
+.completed span {
+  text-decoration: line-through; /* Lägger till genomstrykning på texten */
+}
+/* Animation för att lägga till en uppgift */
+#felMeddelande.error {
+  animation: errorBlink 0.5s ease-in-out 3; /* Lägger till en blinkande animation för felmeddelandet */
+}
+/* Animationer */
+@keyframes addTask {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes errorBlink {
+  0% {
+    color: red;
+  }
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: red;
+  }
+}
+/* Animation för att visa sidan */
+@keyframes pageStart {
+  0% {
+    opacity: 0;
+    translate: 0 -600px; /* Börjar utanför skärmen */
+  }
+
+  70% {
+    opacity: 1;
+    translate: 0 15px;
+  }
+
+  85% {
+    translate: 0 -8px;
+  }
+
+  100% {
+    translate: 0 0;
+  }
 }

@@ -9,7 +9,13 @@ const tasks = []; // tom array för att lagra uppgifter!
 // Event listener för knappen + skapar en ny lista med texten som användaren skriver in i inputfältet.
 addButton.addEventListener("click", function () {
   if (taskInput.value.trim() === "") {
+    console.log("tomt fält");
     felMeddelande.textContent = "Du måste skriva någoting i fältet!";
+    felMeddelande.classList.remove("error"); // Tar bort klassen om den redan finns
+
+    setTimeout(function () {
+      felMeddelande.classList.add("error"); // Lägger till klassen för att trigga animationen
+    }, 10); // Lägger till en liten fördröjning innan klassen läggs till
   } else {
     felMeddelande.textContent = "";
 
@@ -24,7 +30,11 @@ addButton.addEventListener("click", function () {
 
     // Skapar uppgiften i listan
     const newTask = document.createElement("li");
-    newTask.textContent = taskInput.value;
+
+    const taskText = document.createElement("span");
+    taskText.textContent = taskInput.value;
+
+    newTask.appendChild(taskText);
     //Lägger till papperskorgen, samt gör så att den raderar saker på listan
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "🗑️";
